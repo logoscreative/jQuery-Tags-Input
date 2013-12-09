@@ -189,7 +189,8 @@
       placeholderColor:'#666666',
       autosize: true,
       comfortZone: 20,
-      inputPadding: 6*2
+      inputPadding: 6*2,
+      tabindex: ''
     },options);
 
 		this.each(function() { 
@@ -219,9 +220,15 @@
 			}
 	
 			var markup = '<div id="'+id+'_tagsinput" class="tagsinput"><div id="'+id+'_addTag">';
-			
-			if (settings.interactive) {
-				markup = markup + '<input id="'+id+'_tag" value="" data-default="'+settings.defaultText+'" />';
+
+            if ( settings.tabindex && $.isNumeric(settings.tabindex) === true ) {
+                tabindex = ' tabindex="'+settings.tabindex+'"';
+            } else {
+                tabindex = '';
+            }
+
+            if (settings.interactive) {
+                markup = markup + '<input id="'+id+'_tag" value="" data-default="'+settings.defaultText+'"'+tabindex+' />';
 			}
 			
 			markup = markup + '</div><div class="tags_clear"></div></div>';
